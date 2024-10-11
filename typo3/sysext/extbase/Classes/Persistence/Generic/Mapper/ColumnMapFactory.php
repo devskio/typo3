@@ -98,7 +98,10 @@ class ColumnMapFactory
             return $this->setOneToManyRelation($columnMap, $columnConfiguration);
         }
 
-        if ($type !== null && strpbrk($type, '_\\') !== false) {
+        if ($type !== null
+            && strpbrk($type, '_\\') !== false
+            && $columnMap->getType() !== TableColumnType::DATETIME
+        ) {
             // @todo: check the strpbrk function call. Seems to be a check for Tx_Foo_Bar style class names
             return $this->setOneToOneRelation($columnMap, $columnConfiguration);
         }
